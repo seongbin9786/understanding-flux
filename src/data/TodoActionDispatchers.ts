@@ -8,4 +8,10 @@ export const TodoActionDispatchers = {
       text,
     });
   },
+  deleteTodo: (id: string) => {
+    TodoDispatcher.dispatch({
+      type: TodoActionTypeConstants.DELETE_TODO,
+      id,
+    });
+  },
 };

@@ -38,6 +38,10 @@ class TodoStore extends ReduceStore<TodoStoreState, TodoActionTypes> {
         );
       }
 
+      case TodoActionTypeConstants.DELETE_TODO:
+        state.delete(action.id);
+        return state;
+
       default:
         return state;
     }
