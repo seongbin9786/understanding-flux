@@ -1,7 +1,11 @@
+import { TodoActionDispatchers } from "../data/TodoActionDispatchers";
 import { TodoStoreState } from "../data/TodoStore";
 
 interface CommonViewProps {
   todos: TodoStoreState;
+  addTodo: typeof TodoActionDispatchers.addTodo;
+  deleteTodo: typeof TodoActionDispatchers.deleteTodo;
+  toggleTodo: typeof TodoActionDispatchers.toggleTodo;
 }
 
 export const TodoView = (props: CommonViewProps) => {
@@ -36,10 +40,17 @@ const Main = (props: CommonViewProps) => {
                 className="toggle"
                 type="checkbox"
                 checked={todo.complete}
-                onChange={() => {}}
+                onChange={() => {
+                  props.toggleTodo(todo.id);
+                }}
               />
               <label>{todo.text}</label>
-              <button className="destroy" onClick={() => {}} />
+              <button
+                className="destroy"
+                onClick={() => {
+                  props.deleteTodo(todo.id);
+                }}
+              />
             </div>
           </li>
         ))}
