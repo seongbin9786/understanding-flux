@@ -14,4 +14,10 @@ export const TodoActionDispatchers = {
       id,
     });
   },
+  toggleTodo: (id: string) => {
+    TodoDispatcher.dispatch({
+      type: TodoActionTypeConstants.TOGGLE_TODO,
+      id,
+    });
+  },
 };
