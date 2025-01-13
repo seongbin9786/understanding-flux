@@ -1,5 +1,7 @@
+import { ConnectedTodoContainer } from "./containers/TodoContainer";
+
 const App = () => {
-  return null;
+  return <ConnectedTodoContainer />;
 };
 
 export default App;
