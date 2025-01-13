@@ -36,16 +36,12 @@ class TodoStore extends ReduceStore<TodoStoreState, TodoActionTypes> {
       }
 
       case TodoActionTypeConstants.DELETE_TODO:
-        state.delete(action.id);
-        return state;
+        return state.delete(action.id);
 
       case TodoActionTypeConstants.TOGGLE_TODO: {
-        const target = state.get(action.id);
-        if (!target) {
-          return state;
-        }
-        target.complete = !target.complete;
-        return state;
+        return state.update(action.id, (todo) => {
+          return todo?.set("complete", !todo.complete);
+        });
       }
       default:
         return state;
