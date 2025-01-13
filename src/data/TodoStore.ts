@@ -3,8 +3,10 @@ import { TodoDispatcher } from "./TodoDispatcher";
 import * as Immutable from "immutable";
 import { TodoActionTypeConstants } from "./TodoActionTypeConstants";
 import { TodoActionTypes } from "./TodoActionTypes";
+import { createAutoIncrementId } from "../utils/createAutoIncrementId";
+import { Todo } from "./Todo";
 
-interface TodoStoreState {}
+type TodoStoreState = Immutable.OrderedMap<string, ReturnType<typeof Todo>>;
 
 class TodoStore extends ReduceStore<TodoStoreState, TodoActionTypes> {
   constructor() {
@@ -12,12 +14,27 @@ class TodoStore extends ReduceStore<TodoStoreState, TodoActionTypes> {
   }
 
   getInitialState() {
-    return Immutable.OrderedMap();
+    return Immutable.OrderedMap<string, ReturnType<typeof Todo>>();
   }
 
   reduce(state: TodoStoreState, action: TodoActionTypes) {
     switch (action.type) {
-      case TodoActionTypeConstants.ADD_TODO:
+      case TodoActionTypeConstants.ADD_TODO: {
+        if (!action.text) {
+          return state;
+        }
+
+        const id = createAutoIncrementId();
+        return state.set(
+          id,
+          new Todo({
+            id,
+            text: action.text,
+            complete: false,
+          }),
+        );
+      }
+
       default:
         return state;
     }
