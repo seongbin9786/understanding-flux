@@ -1,3 +1,4 @@
-export const TodoActionTypes = {
-  ADD_TODO: "ADD_TODO",
+export type TodoActionTypes = {
+  type: "ADD_TODO";
+  text: string;
 };
