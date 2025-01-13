@@ -1,12 +1,12 @@
 import { ReduceStore } from "flux/utils";
 import { TodoDispatcher } from "./TodoDispatcher";
-import Immutable from "immutable";
+import * as Immutable from "immutable";
 import { TodoActionTypeConstants } from "./TodoActionTypeConstants";
 import { TodoActionTypes } from "./TodoActionTypes";
 
 interface TodoStoreState {}
 
-export class TodoStore extends ReduceStore<TodoStoreState, TodoActionTypes> {
+class TodoStore extends ReduceStore<TodoStoreState, TodoActionTypes> {
   constructor() {
     super(TodoDispatcher);
   }
@@ -23,3 +23,5 @@ export class TodoStore extends ReduceStore<TodoStoreState, TodoActionTypes> {
     }
   }
 }
+
+export const TodoStoreInstance = new TodoStore();
