@@ -6,6 +6,10 @@ export type TodoActionTypes =
       text: string;
     }
   | {
+      type: typeof TodoActionTypeConstants.UPDATE_DRAFT;
+      text: string;
+    }
+  | {
       type: typeof TodoActionTypeConstants.DELETE_TODO;
       id: string;
     }

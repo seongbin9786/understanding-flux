@@ -20,4 +20,10 @@ export const TodoActionDispatchers = {
       id,
     });
   },
+  updateDraft: (text: string) => {
+    TodoDispatcher.dispatch({
+      type: TodoActionTypeConstants.UPDATE_DRAFT,
+      text,
+    });
+  },
 };
